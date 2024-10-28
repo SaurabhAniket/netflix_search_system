@@ -1,7 +1,4 @@
 
-Memory updated
-Here’s a description you can use for your GitHub project focused on a Netflix-like search and recommendation system:
-
 Netflix Search and Recommendation System
 This project aims to develop a sophisticated search and recommendation system inspired by Netflix's algorithm. Utilizing advanced data engineering techniques, the system will enable users to discover and receive personalized suggestions for movies and TV shows based on their preferences and viewing history.
 
