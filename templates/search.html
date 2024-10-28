@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Netflix Search</title>
+</head>
+<body>
+    <h1>Netflix Search & Recommendation</h1>
+
+    <!-- Search Form -->
+    <form id="search-form">
+        <label for="query">Search for a title:</label>
+        <input type="text" id="query" name="query">
+        <button type="submit">Search</button>
+    </form>
+
+    <div id="results"></div>
+
+    <!-- Recommendations Form -->
+    <form id="recommend-form">
+        <label for="title">Get recommendations for:</label>
+        <input type="text" id="title" name="title">
+        <button type="submit">Get Recommendations</button>
+    </form>
+
+    <div id="recommendations"></div>
+
+    <script>
+        // Search functionality
+        document.getElementById('search-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            let query = document.getElementById('query').value;
+
+            fetch(`/search?query=${query}`)
+                .then(response => response.json())
+                .then(data => {
+                    let results = '<h2>Search Results</h2>';
+                    data.forEach(result => {
+                        results += `<p>${result.title} - ${result.genre}</p>`;
+                    });
+                    document.getElementById('results').innerHTML = results;
+                });
+        });
+
+        // Recommendation functionality
+        document.getElementById('recommend-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            let title = document.getElementById('title').value;
+
+            fetch(`/recommend?title=${title}`)
+                .then(response => response.json())
+                .then(data => {
+                    let recommendations = '<h2>Recommendations</h2>';
+                    data.forEach(rec => {
+                        recommendations += `<p>${rec}</p>`;
+                    });
+                    document.getElementById('recommendations').innerHTML = recommendations;
+                });
+        });
+    </script>
+</body>
+</html>
